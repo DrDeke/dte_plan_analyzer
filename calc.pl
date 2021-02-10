@@ -202,4 +202,4 @@ print "Total           kWh: $total_tod_kwh Cost: \$$total_tod_dollars\n";
 
 
 
-
+print "hi";
