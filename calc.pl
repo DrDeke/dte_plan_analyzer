@@ -115,7 +115,7 @@ while (my $line = <$data>)
 	}
 
 	#Accumulate time-of-day (D1.2) usage
-	if (($month <= $summer_first_mo) || ($month >= $summer_last_mo)) #It's winter
+	if (($month < $summer_first_mo) || ($month > $summer_last_mo)) #It's winter
 	{
 		#print "DEBUG: Rate: Winter    ";
 		if (($dayofweek == 6) || ($dayofweek == 7)) #It's a weekend
