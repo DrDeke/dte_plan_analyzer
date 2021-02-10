@@ -100,7 +100,7 @@ while (my $line = <$data>)
 	}
 	else
 	{
-		if ($std_kwh_today <= 17)
+		if ($std_kwh_today < 17)
 		{
 			$std_tier1_kwh = $std_tier1_kwh + $usage;
 			$std_kwh_today = $std_kwh_today + $usage;
