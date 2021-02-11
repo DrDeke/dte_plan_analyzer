@@ -18,7 +18,7 @@ my $standard_rate_tier2 = 17.271;
 
 my $std_kwh_today = 0;
 
-my $file = "input.csv";
+my $file = $ARGV[0];
 
 my $std_tier1_kwh = 0;
 my $std_tier2_kwh = 0;
@@ -32,7 +32,25 @@ my ($date, $year, $time, $hour, $ampm, $month, $day, $usage, $dayofweek);
 
 # Note: dayofweek 1=Monday, 7=Sunday
 
-open (my $data, '<', $file) or die "Could not open input file.\n";
+sub usage 
+{
+	print <<EOF;
+Usage: $0 <input.csv>
+
+A quick and very dirty script to examine a year's worth of your DTE Energy electric usage and calculate your cost on the D1 standard service plan vs the D1.2 time-of-day service plan.
+EOF
+}
+
+
+
+
+
+if(@ARGV != 1) {
+	usage;
+	exit 1;
+}
+
+open (my $data, '<', $file) or die "Could not open input file $file.\n";
 
 while (my $line = <$data>)
 {
