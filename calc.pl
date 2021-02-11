@@ -2,6 +2,16 @@
 
 use DateTime;
 
+
+# Debug booleans
+my $general_debug0 = 0;
+my $d1debug = 0;
+my $d1_2debug = 0;
+my $d1_8debug = 0;
+
+
+# Constants
+
 my $weekday_peak_first_hr = 11;
 my $weekday_peak_last_hr = 18; #The 6pm-o'clock hour. Off-peak starts at 7pm-o'clock
 
@@ -15,6 +25,9 @@ my $summer_offpeak_rate = 12.032;
 
 my $standard_rate_tier1 = 15.287;
 my $standard_rate_tier2 = 17.271;
+
+
+# Regular vars
 
 my $std_kwh_today = 0;
 
@@ -31,6 +44,7 @@ my $summer_offpeak_kwh = 0;
 my ($date, $year, $time, $hour, $ampm, $month, $day, $usage, $dayofweek);
 
 # Note: dayofweek 1=Monday, 7=Sunday
+
 
 sub usage 
 {
@@ -54,7 +68,10 @@ open (my $data, '<', $file) or die "Could not open input file $file.\n";
 
 while (my $line = <$data>)
 {
-	#print "$line\n";
+	if ($general_debug0 == 1)
+	{
+		print "$line\n";
+	}
 	next if $. == 1; # skip first line
 
 	my @fields = split "," , $line;
@@ -96,8 +113,11 @@ while (my $line = <$data>)
 	$dayofweek = $dt->day_of_week;
 
 
-	#print ">$date< >$hour< >$usage<\n";
-	#print ">$month< >$day< >$year< >$time< >$hour< >$ampm< >$usage< >$dayofweek<\n";
+	if ($general_debug0 == 1)
+	{
+		print ">$date< >$hour< >$usage<\n";
+		print ">$month< >$day< >$year< >$time< >$hour< >$ampm< >$usage< >$dayofweek<\n";
+	}
 
 
 	#Accumulate standard (D1) usage
@@ -107,15 +127,21 @@ while (my $line = <$data>)
 		{
 			$std_tier1_kwh = $std_tier1_kwh + $usage;
 			$std_kwh_today = 0;
-			#print "DEBUG: Adding $usage kWh to std_tier1\n";
-			#print "DEBUG: Resetting daily accumulation\n";
+			if ($d1debug == 1)
+			{
+				print "DEBUG: Adding $usage kWh to std_tier1\n";
+				print "DEBUG: Resetting daily accumulation\n";
+			}
 		}
 		else
 		{
 			$std_tier2_kwh = $std_tier2_kwh + $usage;
 			$std_kwh_today = 0;
-			#print "DEBUG: Adding $usage kWh to std_tier2\n";
-			#print "DEBUG: Resetting daily accumulation\n";
+			if ($d1debug == 1)
+			{
+				print "DEBUG: Adding $usage kWh to std_tier2\n";
+				print "DEBUG: Resetting daily accumulation\n";
+			}
 		}
 	}
 	else
@@ -124,57 +150,87 @@ while (my $line = <$data>)
 		{
 			$std_tier1_kwh = $std_tier1_kwh + $usage;
 			$std_kwh_today = $std_kwh_today + $usage;
-                        #print "DEBUG: Adding $usage kWh to std_tier1\n";
+			if ($d1debug == 1)
+			{
+                        	print "DEBUG: Adding $usage kWh to std_tier1\n";
+			}
 		}
 		else
 		{
 			$std_tier2_kwh = $std_tier2_kwh + $usage;
 			$std_kwh_today = $std_kwh_today + $usage; #unnecessary
-			#print "DEBUG: Adding $usage kWh to std_tier2\n";
+			if ($d1debug == 1)
+			{
+				print "DEBUG: Adding $usage kWh to std_tier2\n";
+			}
 		}
 	}
 
 	#Accumulate time-of-day (D1.2) usage
 	if (($month < $summer_first_mo) || ($month > $summer_last_mo)) #It's winter
 	{
-		#print "DEBUG: Rate: Winter    ";
+		if ($d1_2debug == 1)
+		{
+			print "DEBUG: Rate: Winter    ";
+		}
 		if (($dayofweek == 6) || ($dayofweek == 7)) #It's a weekend
 		{
-			#print "Adding $usage kWh to off-peak (weekend)\n";
+			if ($d1_2debug == 1)
+			{
+				print "Adding $usage kWh to off-peak (weekend)\n";
+			}
 			$winter_offpeak_kwh = $winter_offpeak_kwh + $usage;
 		}
 		else
 		{
 			if (($hour < $weekday_peak_first_hr) || ($hour > $weekday_peak_last_hr))
 			{
-				#print "Adding $usage kWh to off-peak (weekday)\n";
+				if ($d1_2debug == 1)
+				{
+					print "Adding $usage kWh to off-peak (weekday)\n";
+				}
 				$winter_offpeak_kwh = $winter_offpeak_kwh + $usage;
 			}
 			else
 			{
-				#print "Adding $usage kWh to on-peak\n";
+				if ($d1_2debug == 1)
+				{
+					print "Adding $usage kWh to on-peak\n";
+				}
 				$winter_peak_kwh = $winter_peak_kwh + $usage;
 			}
 		}
 	}
 	else #It's summer
 	{
-                #print "DEBUG: Rate: Summer    ";
+		if ($d1_2debug == 1)
+		{
+                	print "DEBUG: Rate: Summer    ";
+		}
                 if (($dayofweek == 6) || ($dayofweek == 7)) #It's a weekend
                 {
-                        #print "Adding $usage kWh to off-peak (weekend)\n";
+			if ($d1_2debug == 1)
+			{
+                        	print "Adding $usage kWh to off-peak (weekend)\n";
+			}
                         $summer_offpeak_kwh = $summer_offpeak_kwh + $usage;
                 }
                 else
                 {
                         if (($hour < $weekday_peak_first_hr) || ($hour > $weekday_peak_last_hr))
                         {
-                                #print "Adding $usage kWh to off-peak (weekday)\n";
+				if ($d1_2debug == 1)
+				{
+                                	print "Adding $usage kWh to off-peak (weekday)\n";
+				}
                                 $summer_offpeak_kwh = $summer_offpeak_kwh + $usage;
                         }
                         else
                         {
-                                #print "Adding $usage kWh to on-peak\n";
+				if ($d1_2debug == 1)
+				{
+                                	print "Adding $usage kWh to on-peak\n";
+				}
                                 $summer_peak_kwh = $summer_peak_kwh + $usage;
                         }
                 }
