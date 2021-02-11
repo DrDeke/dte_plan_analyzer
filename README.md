@@ -7,9 +7,8 @@ I haven't yet decided whether I plan to tidy up and improve / generalize this co
 
 # How to use 
 1. Download exactly one year's worth of your electric usage data from dteenergy.com in CSV format
-2. Use a text editor to delete the first line in the downloaded CSV file
-3. Run the script with the CSV file as the argument
-4. The results will be printed to standard output
+2. Run the script with the CSV file as the argument
+3. The results will be printed to standard output
 
 # Rates and Assumptions
 * All rate information was taken from [this rate sheet](https://newlook.dteenergy.com/wps/wcm/connect/23195474-a4d1-4d38-aa30-a4426fd3336b/WholeHouseRateOptions.pdf?MOD=AJPERES&CACHEID=23195474-a4d1-4d38-aa30-a4426fd3336b) as accessed on 9 February 2021. 

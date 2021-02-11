@@ -55,6 +55,8 @@ open (my $data, '<', $file) or die "Could not open input file $file.\n";
 while (my $line = <$data>)
 {
 	#print "$line\n";
+	next if $. == 1; # skip first line
+
 	my @fields = split "," , $line;
 	$date = $fields[1];
 	$time = $fields[2];
