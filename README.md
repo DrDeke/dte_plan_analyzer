@@ -1,10 +1,6 @@
 # dte_plan_analyzer
 A quick and very dirty script to examine a year's worth of your DTE Energy electric usage and calculate your cost on the D1 standard service plan vs the D1.2 time-of-day service plan
 
-I whipped this up as a one-time thing and have not yet stepped through the debugging output in an attempt to verify that it is computing the D1.2 plan usage correctly. I plan to do that and will remove this statement once I have. 
-
-I haven't yet decided whether I plan to tidy up and improve / generalize this code or not. 
-
 # How to use 
 1. Download exactly one year's worth of your electric usage data from dteenergy.com in CSV format
 2. Run the script with the CSV file as the argument
@@ -15,6 +11,9 @@ I haven't yet decided whether I plan to tidy up and improve / generalize this co
 * Taxes, fees, surcharges, and credits not mentioned on the rate sheet are not accounted for by this script.
 * Fixed monthly service charges are not accounted for by this script.
 * Dollar and kWh amounts are truncated to integers near the end of the script (after all the accumulation has occurred).
+
+# Known Bugs/Limitations/Caveats
+* The 17 kWh/day tiering logic for the D1 standard plan is only computed to an hourly basis here. On actual DTE bills, the 17 kWh threshold is exact.
 
 # Example
     $ ./calc.pl
