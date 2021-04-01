@@ -1,5 +1,5 @@
 # dte_plan_analyzer
-A quick and very dirty script to examine a year's worth of your DTE Energy electric usage and calculate your cost on the D1 standard service plan vs the D1.2 time-of-day service plan and the new Shift n Save plan.
+A quick and very dirty script to examine a year's worth of your DTE Energy electric usage and calculate your cost on the D1 standard service plan vs the D1.2 time-of-day service plan, D1.8 ynamic peak pricing plan,  and the new Shift n Save plan.
 
 # How to use 
 1. Download exactly one year's worth of your electric usage data from dteenergy.com in CSV format
@@ -11,6 +11,7 @@ A quick and very dirty script to examine a year's worth of your DTE Energy elect
 * Taxes, fees, surcharges, and credits not mentioned on the rate sheet are not accounted for by this script.
 * Fixed monthly service charges are not accounted for by this script.
 * Dollar and kWh amounts are truncated to integers near the end of the script (after all the accumulation has occurred).
+* Critical Peak Events are not ccounted in D1.8 Dyanmic Peak Pricing plan
 
 # Known Bugs/Limitations/Caveats
 * The 17 kWh/day tiering logic for the D1 standard plan is only computed to an hourly basis here. On actual DTE bills, the 17 kWh threshold is exact.
