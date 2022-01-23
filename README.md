@@ -7,7 +7,8 @@ A quick and very dirty script to examine a year's worth of your DTE Energy elect
 3. The results will be printed to standard output
 
 # Rates and Assumptions
-* All rate information was taken from [this rate sheet](https://newlook.dteenergy.com/wps/wcm/connect/23195474-a4d1-4d38-aa30-a4426fd3336b/WholeHouseRateOptions.pdf?MOD=AJPERES&CACHEID=23195474-a4d1-4d38-aa30-a4426fd3336b) as accessed on 9 February 2021. 
+* Rate information for the D1 and D1.2 plans were taken from [this rate sheet](https://newlook.dteenergy.com/wps/wcm/connect/23195474-a4d1-4d38-aa30-a4426fd3336b/WholeHouseRateOptions.pdf?MOD=AJPERES&CACHEID=23195474-a4d1-4d38-aa30-a4426fd3336b) as accessed on 9 February 2021. 
+* Rate information for the proposed D1.11 and D1.12 plans were taken from DTE's [2022 Rate Case U-20836](https://mi-psc.force.com/s/case/500t000000WH1HKAA1/in-the-matter-of-the-application-of-dte-electric-company-for-authority-to-increase-its-rates-amend-its-rate-schedules-and-rules-governing-the-distribution-and-supply-of-electric-energy-and-for-miscellaneous-accounting-authority) as filed on 21 January 2022.
 * Taxes, fees, surcharges, and credits not mentioned on the rate sheet are not accounted for by this script.
 * Fixed monthly service charges are not accounted for by this script.
 * Dollar and kWh amounts are truncated to integers near the end of the script (after all the accumulation has occurred).
