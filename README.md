@@ -1,5 +1,8 @@
 # dte_plan_analyzer
-A quick and very dirty script to examine a year's worth of your DTE Energy electric usage and calculate your cost on the D1 standard service plan vs the D1.2 time-of-day service plan
+A quick and very dirty script to examine a year's worth of your DTE Energy electric usage and calculate what your cost would have been on various residential rate plans including:
+* D1 Standard Residential Electric Service Rate
+* D1.2 Residential Time-of-Day Rate
+* D1.11 Proposed Residential Time-of-Day Rate (U-20836)
 
 # How to use 
 1. Download exactly one year's worth of your electric usage data from dteenergy.com in CSV format
@@ -20,17 +23,23 @@ A quick and very dirty script to examine a year's worth of your DTE Energy elect
 # Example
     $ ./calc.pl
     
-    
     ---Standard D1 Plan---
-    Tier 1 kWh: 6543 Cost: $1000
-    Tier 2 kWh: 10376 Cost: $1792
-    Total  kWh: 16920 Cost: $2792
+    Tier 1 kWh: 8241 Cost: $1259
+    Tier 2 kWh: 10051 Cost: $1735
+    Total  kWh: 18292 Cost: $2994
     
     ---Time-of-Day D1.2 Plan---
-    Summer Peak     kWh: 1395 Cost: $316
-    Summer Off-Peak kWh: 3409 Cost: $410
-    Winter Peak     kWh: 3099 Cost: $626
-    Winter Off-Peak kWh: 9015 Cost: $1065
-    Total           kWh: 16920 Cost: $2417
+    Summer Peak     kWh: 2201 Cost: $500
+    Summer Off-Peak kWh: 6076 Cost: $731
+    Winter Peak     kWh: 2261 Cost: $457
+    Winter Off-Peak kWh: 7752 Cost: $916
+    Total           kWh: 18292 Cost: $2604
+    
+    ---Proposed Time-of-Day D1.11 Plan (U-20836)---
+    Summer Peak     kWh: 1254 Cost: $239
+    Summer Off-Peak kWh: 5679 Cost: $987
+    Winter Peak     kWh: 1600 Cost: $284
+    Winter Off-Peak kWh: 9759 Cost: $1697
+    Total           kWh: 18292 Cost: $3207
     
 In this example, the consumer would have paid approximately $375 more for the year's electricity on the D1 standard rate than the D1.2 time of day rate.
