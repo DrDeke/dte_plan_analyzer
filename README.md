@@ -41,5 +41,3 @@ A quick and somewhat dirty script to examine a year's worth of your DTE Energy e
     Winter Peak     kWh: 1593 Cost: $283
     Winter Off-Peak kWh: 8641 Cost: $1502
     Total           kWh: 16595 Cost: $2912
-    
-In this example, the consumer would have paid approximately $375 more for the year's electricity on the D1 standard rate than the D1.2 time of day rate.
