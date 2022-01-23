@@ -1,5 +1,5 @@
 # dte_plan_analyzer
-A quick and very dirty script to examine a year's worth of your DTE Energy electric usage and calculate what your cost would have been on various residential rate plans including:
+A quick and somewhat dirty script to examine a year's worth of your DTE Energy electric usage and calculate what your cost would have been on various residential rate plans including:
 * D1 Standard Residential Electric Service Rate
 * D1.2 Residential Time-of-Day Rate
 * D1.11 Proposed Residential Time-of-Day Rate (U-20836)
@@ -21,7 +21,7 @@ A quick and very dirty script to examine a year's worth of your DTE Energy elect
 * This script does not currently work on DTE accounts associated with more than one electric meter. If your DTE account is associated with more than one electric meter, you will need to edit the CSV usage file to remove all rows pertaining to all meters other than the one you want to analyze. You will also need to remove the entire "meter number" column from the CSV usage file.
 
 # Example
-    $ ./calc.pl
+    $ ./calc.pl input.csv
     
     ---Standard D1 Plan---
     Tier 1 kWh: 8241 Cost: $1259
