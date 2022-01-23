@@ -8,7 +8,7 @@ my $general_debug0 = 0;
 my $d1debug = 0;
 my $d1_2debug = 0;
 my $d1_8debug = 0;
-
+my $d1_11debug = 0;
 
 # Constants
 
@@ -26,6 +26,24 @@ my $summer_offpeak_rate = 12.032;
 my $standard_rate_tier1 = 15.287;
 my $standard_rate_tier2 = 17.271;
 
+# Proposed D1.11 rates
+my $d1_11_weekday_peak_first_hr = 15;
+my $d1_11_weekday_peak_last_hr = 19;
+my $d1_11_summer_first_mo = 6;
+my $d1_11_summer_last_mo = 9;
+
+my $d1_11_energy_cap_rate = 4.458;
+
+my $d1_11_winter_peak_noncap_rate = 5.157;
+my $d1_11_winter_offpeak_noncap_rate = 4.740;
+my $d1_11_summer_peak_noncap_rate = 6.432;
+my $d1_11_summer_offpeak_noncap_rate = 4.740;
+
+my $d1_11_distrib_rate = 8.194;
+
+
+
+
 
 # Regular vars
 
@@ -41,6 +59,12 @@ my $winter_offpeak_kwh = 0;
 my $summer_peak_kwh = 0;
 my $summer_offpeak_kwh = 0;
 
+my $d1_11_winter_offpeak_kwh = 0;
+my $d1_11_summer_offpeak_kwh = 0;
+my $d1_11_winter_peak_kwh = 0;
+my $d1_11_summer_peak_kwh = 0;
+
+
 my ($date, $year, $time, $hour, $ampm, $month, $day, $usage, $dayofweek);
 
 # Note: dayofweek 1=Monday, 7=Sunday
@@ -51,7 +75,12 @@ sub usage
 	print <<EOF;
 Usage: $0 <input.csv>
 
-A quick and very dirty script to examine a year's worth of your DTE Energy electric usage and calculate your cost on the D1 standard service plan vs the D1.2 time-of-day service plan.
+A quick and somewhat dirty script to examine a year's worth of your DTE Energy electric usage and calculate your cost on various residential service plans, including:
+
+* D1 standard residential service
+* D1.2 time-of-day residential service
+* D1.11 proposed time-of-day residential service (U-20836)
+
 EOF
 }
 
@@ -251,6 +280,76 @@ while (my $line = <$data>)
                 }
 	}
 
+	#Accumulate D1.11 (proposed) usage
+	if (($month < $d1_11_summer_first_mo) || ($month > $d1_11_summer_last_mo)) #It's winter
+	{
+		if ($d1_11debug == 1)
+		{
+			print "DEBUG_D1_11: Rate: Winter    ";
+		}
+		if (($dayofweek == 6) || ($dayofweek == 7)) #It's a weekend
+		{
+			if ($d1_11debug == 1)
+			{
+				print "DEBUG_D1_11: Adding $usage kWh to winter off-peak (weekend)\n";
+			}
+			$d1_11_winter_offpeak_kwh = $d1_11_winter_offpeak_kwh + $usage;
+		}
+		else
+		{
+			if (($hour < $d1_11_weekday_peak_first_hr) || ($hour > $d1_11_weekday_peak_last_hr))
+			{
+				if ($d1_11debug == 1)
+				{
+					print "DEBUG_D1_11: Adding $usage kWh to winter off-peak (weekday)\n";
+				}
+				$d1_11_winter_offpeak_kwh = $d1_11_winter_offpeak_kwh + $usage;
+			}
+			else
+			{
+				if ($d1_11debug == 1)
+				{
+					print "DEBUG_D1_11: Adding $usage kWh to winter on-peak\n";
+				}
+				$d1_11_winter_peak_kwh = $d1_11_winter_peak_kwh + $usage;
+			}
+		}
+	}
+	else #It's summer
+	{
+		if ($d1_11debug == 1)
+		{
+			print "DEBUG_D1_11: Rate: Summer    ";
+		}
+		if (($dayofweek == 6) || ($dayofweek == 7)) #It's a weekend
+		{
+			if ($d1_11debug == 1)
+			{
+				print "DEBUG_D1_11: Adding $usage kWh to summer off-peak (weekend)\n";
+			}
+			$d1_11_summer_offpeak_kwh = $d1_11_summer_offpeak_kwh + $usage;
+		}
+		else
+		{
+			if (($hour < $d1_11_weekday_peak_first_hr) || ($hour > $d1_11_weekday_peak_last_hr))
+			{
+				if ($d1_11debug == 1)
+				{
+					print "DEBUG_D1_11: Adding $usage kWh to summer off-peak (weekday)\n";
+				}
+				$d1_11_summer_offpeak_kwh = $d1_11_summer_offpeak_kwh + $usage;
+			}
+			else
+			{
+				if ($d1_11debug == 1)
+				{
+					print "DEBUG_D1_11: Adding $usage kWh to summer on-peak (weekday)\n";
+				}
+				$d1_11_summer_peak_kwh = $d1_11_summer_peak_kwh + $usage;
+			}
+		}
+	}
+
 }
 
 close ($data);
@@ -275,6 +374,16 @@ $summer_offpeak_kwh = int($summer_offpeak_kwh);
 $winter_peak_kwh = int($winter_peak_kwh);
 $winter_offpeak_kwh = int($winter_offpeak_kwh);
 
+my $d1_11_summer_peak_dollars = int((($d1_11_summer_peak_kwh * $d1_11_summer_peak_noncap_rate) + ($d1_11_summer_peak_kwh * $d1_11_energy_cap_rate) + ($d1_11_summer_peak_kwh * $d1_11_distrib_rate)) / 100);
+my $d1_11_summer_offpeak_dollars = int((($d1_11_summer_offpeak_kwh * $d1_11_summer_offpeak_noncap_rate) + ($d1_11_summer_offpeak_kwh * $d1_11_energy_cap_rate) + ($d1_11_summer_offpeak_kwh * $d1_11_distrib_rate)) / 100);
+my $d1_11_winter_peak_dollars = int((($d1_11_winter_peak_kwh * $d1_11_winter_peak_noncap_rate) + ($d1_11_winter_peak_kwh * $d1_11_energy_cap_rate) + ($d1_11_winter_peak_kwh * $d1_11_distrib_rate)) / 100);
+my $d1_11_winter_offpeak_dollars = int((($d1_11_winter_offpeak_kwh * $d1_11_winter_offpeak_noncap_rate) + ($d1_11_winter_offpeak_kwh * $d1_11_energy_cap_rate) + ($d1_11_winter_offpeak_kwh * $d1_11_distrib_rate)) / 100);
+my $d1_11_total_dollars = $d1_11_summer_peak_dollars + $d1_11_summer_offpeak_dollars + $d1_11_winter_peak_dollars + $d1_11_winter_offpeak_dollars;
+my $d1_11_total_kwh = int($d1_11_summer_peak_kwh + $d1_11_summer_offpeak_kwh + $d1_11_winter_peak_kwh + $d1_11_winter_offpeak_kwh);
+$d1_11_winter_offpeak_kwh = int($d1_11_winter_offpeak_kwh);
+$d1_11_winter_peak_kwh = int($d1_11_winter_peak_kwh);
+$d1_11_summer_offpeak_kwh = int($d1_11_summer_offpeak_kwh);
+$d1_11_summer_peak_kwh = int($d1_11_summer_peak_kwh);
 
 print "\n\n";
 print "---Standard D1 Plan---\n";
@@ -290,6 +399,12 @@ print "Winter Peak     kWh: $winter_peak_kwh Cost: \$$winter_peak_dollars\n";
 print "Winter Off-Peak kWh: $winter_offpeak_kwh Cost: \$$winter_offpeak_dollars\n";
 print "Total           kWh: $total_tod_kwh Cost: \$$total_tod_dollars\n";
 
-
+print "\n";
+print "---Proposed Time-of-Day D1.11 Plan (U-20836)---\n";
+print "Summer Peak     kWh: $d1_11_summer_peak_kwh Cost: \$$d1_11_summer_peak_dollars\n";
+print "Summer Off-Peak kWh: $d1_11_summer_offpeak_kwh Cost: \$$d1_11_summer_offpeak_dollars\n";
+print "Winter Peak     kWh: $d1_11_winter_peak_kwh Cost: \$$d1_11_winter_peak_dollars\n";
+print "Winter Off-Peak kWh: $d1_11_winter_offpeak_kwh Cost: \$$d1_11_winter_offpeak_dollars\n";
+print "Total           kWh: $d1_11_total_kwh Cost: \$$d1_11_total_dollars\n";
 
 
