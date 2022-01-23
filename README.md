@@ -15,6 +15,7 @@ A quick and very dirty script to examine a year's worth of your DTE Energy elect
 
 # Known Bugs/Limitations/Caveats
 * The 17 kWh/day tiering logic for the D1 standard plan is only computed to an hourly basis here. On actual DTE bills, the 17 kWh threshold is exact.
+* This script does not currently work on DTE accounts associated with more than one electric meter. If your DTE account is associated with more than one electric meter, you will need to edit the CSV usage file to remove all rows pertaining to all meters other than the one you want to analyze. You will also need to remove the entire "meter number" column from the CSV usage file.
 
 # Example
     $ ./calc.pl
