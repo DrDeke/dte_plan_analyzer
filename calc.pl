@@ -1,7 +1,7 @@
 #!/usr/bin/perl -w
 
 use DateTime;
-
+use Scalar::Util qw(looks_like_number);
 
 # Debug booleans
 my $general_debug0 = 0;
@@ -125,6 +125,11 @@ while (my $line = <$data>)
 	{
 		if ($std_kwh_today < 17)
 		{
+			if (!(looks_like_number($usage)))
+			{
+				$usage = 0;
+				print "NOTICE: No (or invalid) data recorded for this hour: $year-$month-$day $hour\n";
+			}
 			$std_tier1_kwh = $std_tier1_kwh + $usage;
 			$std_kwh_today = 0;
 			if ($d1debug == 1)
@@ -148,6 +153,11 @@ while (my $line = <$data>)
 	{
 		if ($std_kwh_today < 17)
 		{
+			if (!(looks_like_number($usage)))
+			{
+				$usage = 0;
+				print "NOTICE: No (or invalid) data recorded for this hour: $year-$month-$day $hour\n";
+			}
 			$std_tier1_kwh = $std_tier1_kwh + $usage;
 			$std_kwh_today = $std_kwh_today + $usage;
 			if ($d1debug == 1)
@@ -157,6 +167,11 @@ while (my $line = <$data>)
 		}
 		else
 		{
+			if (!(looks_like_number($usage)))
+			{
+				$usage = 0;
+				print "NOTICE: No (or invalid) data recorded for this hour $year-$month-$day $hour\n";
+			}
 			$std_tier2_kwh = $std_tier2_kwh + $usage;
 			$std_kwh_today = $std_kwh_today + $usage; #unnecessary
 			if ($d1debug == 1)
