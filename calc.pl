@@ -28,7 +28,7 @@ my $standard_rate_tier2 = 17.271;
 
 # Proposed D1.11 rates
 my $d1_11_weekday_peak_first_hr = 15;
-my $d1_11_weekday_peak_last_hr = 19;
+my $d1_11_weekday_peak_last_hr = 18; #The 6pm-o'clock Hour. Off-peak starts at 7pm-o'clock
 my $d1_11_summer_first_mo = 6;
 my $d1_11_summer_last_mo = 9;
 
