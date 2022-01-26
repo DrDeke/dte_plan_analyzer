@@ -179,7 +179,7 @@ elsif (($d1_12_demand_kw >= 2) && ($d1_12_demand_kw < 3))
 {
 	$d1_12_capacity_dollars = 11.70;
 }
-elsif (($d1_12_demand_kw => 3) && ($d1_12_demand_kw < 9))
+elsif (($d1_12_demand_kw >= 3) && ($d1_12_demand_kw < 9))
 {
 	$d1_12_capacity_dollars = 17.56 + 5.85 * (int($d1_12_demand_kw) - 3);
 }
