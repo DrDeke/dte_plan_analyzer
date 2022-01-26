@@ -3,7 +3,8 @@ A quick and somewhat dirty script to examine a year's worth of your DTE Energy e
 * D1 Standard Residential Electric Service Rate
 * D1.2 Residential Time-of-Day Rate
 * D1.11 Proposed Residential Time-of-Day Rate (U-20836)
-
+* D1.12 Proposed Residential Time-of-Day with Demand Component Rate (U-20836)
+* 
 # How to use 
 1. Download exactly one year's worth of your electric usage data from dteenergy.com in CSV format
 2. Run the script with the CSV file as the argument
@@ -18,15 +19,15 @@ A quick and somewhat dirty script to examine a year's worth of your DTE Energy e
 
 # Known Bugs/Limitations/Caveats
 * The 17 kWh/day tiering logic for the D1 standard plan is only computed to an hourly basis here. On actual DTE bills, the 17 kWh threshold is exact.
+* For the D1.12 plan, each month's demand-based charges are computed based on the past 12 billing months on a rolling basis. Since we only have one year's worth of data to work with, this script computes your demand level for the entire service year and uses that level for each billing month.
+* For the D1.12 plan, if your demand level is greater than 9 kW, DTE computes the additional demand-based charges with a granularity of 0.1 kW. This script does not use 0.1 kW thresholds; instead, it uses all available precision. 
 * This script does not currently work on DTE accounts associated with more than one electric meter. If your DTE account is associated with more than one electric meter, you will need to edit the CSV usage file to remove all rows pertaining to all meters other than the one you want to analyze. You will also need to remove the entire "meter number" column from the CSV usage file.
 
 # Example
-    $ ./calc.pl input.csv
-    
     ---Standard D1 Plan---
-    Tier 1 kWh: 6548 Cost: $1001
-    Tier 2 kWh: 10047 Cost: $1735
-    Total  kWh: 16595 Cost: $2736
+    Tier 1 kWh: 5233 Cost: $800
+    Tier 2 kWh: 11361 Cost: $1962
+    Total  kWh: 16595 Cost: $2762
 
     ---Time-of-Day D1.2 Plan---
     Summer Peak     kWh: 2199 Cost: $499
@@ -36,8 +37,25 @@ A quick and somewhat dirty script to examine a year's worth of your DTE Energy e
     Total           kWh: 16595 Cost: $2400
 
     ---Proposed Time-of-Day D1.11 Plan (U-20836)---
-    Summer Peak     kWh: 1253 Cost: $239
-    Summer Off-Peak kWh: 5106 Cost: $888
-    Winter Peak     kWh: 1593 Cost: $283
-    Winter Off-Peak kWh: 8641 Cost: $1502
-    Total           kWh: 16595 Cost: $2912
+    Summer Peak     kWh: 1027 Cost: $196
+    Summer Off-Peak kWh: 5332 Cost: $927
+    Winter Peak     kWh: 1268 Cost: $225
+    Winter Off-Peak kWh: 8966 Cost: $1559
+    Total           kWh: 16595 Cost: $2907
+
+    ---Proposed Time-of-Day With Demand Charge D1.12 Plan (U-20836)---
+    Demand Hour 1: 10/02/2021 8:00 PM 7.231 kWh
+    Demand Hour 2: 06/09/2021 3:00 PM 7.227 kWh
+    Demand Hour 3: 06/10/2021 2:00 PM 6.621 kWh
+    Service Level (demand): 7
+
+    Delivery Charge (demand): $903
+    Capacity Energy Charge (demand): $491
+
+    Non-Capacity Energy Charges (usage):
+    Summer Peak     kWh: 1027 Cost: $66
+    Summer Off-Peak kWh: 5332 Cost: $252
+    Winter Peak     kWh: 1268 Cost: $65
+    Winter Off-Peak kWh: 8966 Cost: $424
+        Subtotal Non-Capacity Energy kWh: 16595 Cost: $807
+    Total D1.12 Cost: $2201
