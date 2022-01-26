@@ -4,7 +4,7 @@ A quick and somewhat dirty script to examine a year's worth of your DTE Energy e
 * D1.2 Residential Time-of-Day Rate
 * D1.11 Proposed Residential Time-of-Day Rate (U-20836)
 * D1.12 Proposed Residential Time-of-Day with Demand Component Rate (U-20836)
-* 
+
 # How to use 
 1. Download exactly one year's worth of your electric usage data from dteenergy.com in CSV format
 2. Run the script with the CSV file as the argument
