@@ -9,6 +9,7 @@ my $d1debug = 0;
 my $d1_2debug = 0;
 my $d1_8debug = 0;
 my $d1_11debug = 0;
+my $d1_12debug = 1;
 
 # Constants
 
@@ -26,7 +27,7 @@ my $summer_offpeak_rate = 12.032;
 my $standard_rate_tier1 = 15.287;
 my $standard_rate_tier2 = 17.271;
 
-# Proposed D1.11 rates
+# Constants for Proposed D1.11 rates
 my $d1_11_weekday_peak_first_hr = 15;
 my $d1_11_weekday_peak_last_hr = 18; #The 6pm-o'clock Hour. Off-peak starts at 7pm-o'clock
 my $d1_11_summer_first_mo = 6;
@@ -41,6 +42,7 @@ my $d1_11_summer_offpeak_noncap_rate = 4.740;
 
 my $d1_11_distrib_rate = 8.194;
 
+# Constants for Proposed D1.12 rates
 
 
 
@@ -63,6 +65,23 @@ my $d1_11_winter_offpeak_kwh = 0;
 my $d1_11_summer_offpeak_kwh = 0;
 my $d1_11_winter_peak_kwh = 0;
 my $d1_11_summer_peak_kwh = 0;
+
+my $d1_12_demandhr1_kwh = 0;
+my $d1_12_demandhr2_kwh = 0;
+my $d1_12_demandhr3_kwh = 0;
+
+my $d1_12_demandhr1_date = "1970/01/01";
+my $d1_12_demandhr2_date = "1970/01/01";
+my $d1_12_demandhr3_date = "1970/01/01";
+
+my $d1_12_demandhr1_hour = -1;
+my $d1_12_demandhr2_hour = -1;
+my $d1_12_demandhr3_hour = -1;
+
+
+
+
+
 
 
 my ($date, $year, $time, $hour, $ampm, $month, $day, $usage, $dayofweek);
@@ -95,6 +114,44 @@ if(@ARGV != 1) {
 
 open (my $data, '<', $file) or die "Could not open input file $file.\n";
 
+
+
+
+# Get top three usage hours per proposed D1.12 rules
+# (which have some complications, so look them up if needed)
+
+my $d1_12_demand_rows = `cat $file | sort -g -r --field-separator=',' -k 4,4 |awk -F',' '{ if(!a[\$2]++){print} }' | head -3`;
+my @d1_12_fields = split ",", $d1_12_demand_rows;
+
+$d1_12_demandhr1_kwh = $d1_12_fields[3];
+$d1_12_demandhr2_kwh = $d1_12_fields[8];
+$d1_12_demandhr3_kwh = $d1_12_fields[13];
+
+$d1_12_demandhr1_date = $d1_12_fields[1];
+$d1_12_demandhr2_date = $d1_12_fields[6];
+$d1_12_demandhr3_date = $d1_12_fields[11];
+
+$d1_12_demandhr1_hour = $d1_12_fields[2];
+$d1_12_demandhr2_hour = $d1_12_fields[7];
+$d1_12_demandhr3_hour = $d1_12_fields[12];
+
+
+if ($d1_12debug == 1)
+{
+	#print "$d1_12_demandhr1_kwh $d1_12_demandhr2_kwh $d1_12_demandhr3_kwh\n";
+	#print "$d1_12_demandhr1_date $d1_12_demandhr2_date $d1_12_demandhr3_date\n";
+	#print "$d1_12_demandhr1_hour $d1_12_demandhr2_hour $d1_12_demandhr3_hour\n";
+
+	print "DEBUG_D1_12: Demand Hour 1: $d1_12_demandhr1_date $d1_12_demandhr1_hour $d1_12_demandhr1_kwh kWh\n";
+	print "DEBUG_D1_12: Demand Hour 2: $d1_12_demandhr2_date $d1_12_demandhr2_hour $d1_12_demandhr2_kwh kWh\n";
+	print "DEBUG_D1_12: Demand Hour 3: $d1_12_demandhr3_date $d1_12_demandhr3_hour $d1_12_demandhr3_kwh kWh\n";
+
+}
+
+
+exit 1;
+
+# Read and parse readings in the input file
 while (my $line = <$data>)
 {
 	if ($general_debug0 == 1)
@@ -384,6 +441,14 @@ $d1_11_winter_offpeak_kwh = int($d1_11_winter_offpeak_kwh);
 $d1_11_winter_peak_kwh = int($d1_11_winter_peak_kwh);
 $d1_11_summer_offpeak_kwh = int($d1_11_summer_offpeak_kwh);
 $d1_11_summer_peak_kwh = int($d1_11_summer_peak_kwh);
+
+if ($d1_12debug == 1)
+{
+	print "DEBUG_D1_12: TopHour1 date=$d1_12_demandhr1_date hour=$d1_12_demandhr1_hour kwh=$d1_12_demandhr1_kwh\n";
+        print "DEBUG_D1_12: TopHour2 date=$d1_12_demandhr2_date hour=$d1_12_demandhr2_hour kwh=$d1_12_demandhr2_kwh\n";
+        print "DEBUG_D1_12: TopHour3 date=$d1_12_demandhr3_date hour=$d1_12_demandhr3_hour kwh=$d1_12_demandhr3_kwh\n";
+}
+
 
 print "\n\n";
 print "---Standard D1 Plan---\n";
