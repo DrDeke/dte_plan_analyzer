@@ -74,6 +74,12 @@ my $d1_11_summer_offpeak_kwh = 0;
 my $d1_11_winter_peak_kwh = 0;
 my $d1_11_summer_peak_kwh = 0;
 
+my $d1_12_winter_offpeak_kwh = 0;
+my $d1_12_winter_peak_kwh = 0;
+my $d1_12_summer_offpeak_kwh = 0;
+my $d1_12_summer_peak_kwh = 0;
+
+
 my $d1_12_demandhr1_kwh = 0;
 my $d1_12_demandhr2_kwh = 0;
 my $d1_12_demandhr3_kwh = 0;
@@ -90,8 +96,6 @@ my $d1_12_demand_kw;
 my $d1_12_demand_level;
 my $d1_12_capacity_dollars;
 my $d1_12_delivery_dollars;
-
-my ($d1_12_winter_peak_kwh, $d1_12_winter_offpeak_kwh, $d1_12_summer_peak_kwh, $d1_12_summer_offpeak_kwh);
 
 
 my ($date, $year, $time, $hour, $ampm, $month, $day, $usage, $dayofweek);
@@ -227,7 +231,7 @@ elsif (($d1_12_demand_kw >= 8) && ($d1_12_demand_kw < 9))
 }
 else
 {
-	$d1_12_delivery_dollars = 96.80 + 10.76 * ($d1_demand_kw - 9);
+	$d1_12_delivery_dollars = 96.80 + 10.76 * ($d1_12_demand_kw - 9);
 }
 
 if ($d1_12debug == 1)
