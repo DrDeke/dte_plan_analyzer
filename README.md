@@ -24,7 +24,7 @@ A quick and somewhat dirty script to examine a year's worth of your DTE Energy e
 * This script does not currently work on DTE accounts associated with more than one electric meter. If your DTE account is associated with more than one electric meter, you will need to edit the CSV usage file to remove all rows pertaining to all meters other than the one you want to analyze. You will also need to remove the entire "meter number" column from the CSV usage file.
 
 # Example
-$ ./calc.pl input.csv
+    $ ./calc.pl input.csv
 
     ---Standard D1 Plan---
     Tier 1 kWh: 5233 Cost: $800
