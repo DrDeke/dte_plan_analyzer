@@ -57,6 +57,8 @@ my $d1_12_weekday_peak_last_hr = 18; #The 6pm-o'clock Hour. Off-peak starts at 7
 
 # Regular vars
 
+my $missing_data = 0;
+
 my $std_kwh_today = 0;
 
 my $file = $ARGV[0];
@@ -306,6 +308,7 @@ while (my $line = <$data>)
 			{
 				$usage = 0;
 				print "NOTICE: No (or invalid) data recorded for this hour: $year-$month-$day $hour\n";
+				$missing_data = 1;
 			}
 			$std_tier1_kwh = $std_tier1_kwh + $usage;
 			$std_kwh_today = 0;
@@ -334,6 +337,7 @@ while (my $line = <$data>)
 			{
 				$usage = 0;
 				print "NOTICE: No (or invalid) data recorded for this hour: $year-$month-$day $hour\n";
+				$missing_data = 1;
 			}
 			$std_tier1_kwh = $std_tier1_kwh + $usage;
 			$std_kwh_today = $std_kwh_today + $usage;
@@ -348,6 +352,7 @@ while (my $line = <$data>)
 			{
 				$usage = 0;
 				print "NOTICE: No (or invalid) data recorded for this hour $year-$month-$day $hour\n";
+				$missing_data = 1;
 			}
 			$std_tier2_kwh = $std_tier2_kwh + $usage;
 			$std_kwh_today = $std_kwh_today + $usage; #unnecessary
@@ -571,6 +576,13 @@ while (my $line = <$data>)
 }
 
 close ($data);
+
+if ($missing_data == 1)
+{
+	print "Note: It is normal to have \"no \(or invalid\) data\" for hours during which the power to your meter was out.\n";
+}
+
+
 
 my $std_total_kwh = int($std_tier1_kwh + $std_tier2_kwh);
 my $std_tier1_dollars = int(($std_tier1_kwh * $standard_rate_tier1) / 100);
