@@ -24,38 +24,51 @@ A quick and somewhat dirty script to examine a year's worth of your DTE Energy e
 * This script does not currently work on DTE accounts associated with more than one electric meter. If your DTE account is associated with more than one electric meter, you will need to edit the CSV usage file to remove all rows pertaining to all meters other than the one you want to analyze. You will also need to remove the entire "meter number" column from the CSV usage file.
 
 # Example
+    ./calc.pl input.csv
+    NOTICE: No (or invalid) data recorded for this hour: 2021-08-11 22
+    NOTICE: No (or invalid) data recorded for this hour: 2021-08-11 23
+    Note: It is normal to have "no (or invalid) data" for hours during which the power to your meter was out.
+    
+    
     ---Standard D1 Plan---
-    Tier 1 kWh: 5233 Cost: $800
-    Tier 2 kWh: 11361 Cost: $1962
-    Total  kWh: 16595 Cost: $2762
-
+    Tier 1 kWh: 6548 Cost: $1001
+    Tier 2 kWh: 10047 Cost: $1735
+    Total  kWh: 16595 Cost: $2736
+    
     ---Time-of-Day D1.2 Plan---
     Summer Peak     kWh: 2199 Cost: $499
     Summer Off-Peak kWh: 5443 Cost: $654
     Winter Peak     kWh: 2256 Cost: $456
     Winter Off-Peak kWh: 6696 Cost: $791
     Total           kWh: 16595 Cost: $2400
-
+    
     ---Proposed Time-of-Day D1.11 Plan (U-20836)---
     Summer Peak     kWh: 1027 Cost: $196
     Summer Off-Peak kWh: 5332 Cost: $927
     Winter Peak     kWh: 1268 Cost: $225
     Winter Off-Peak kWh: 8966 Cost: $1559
     Total           kWh: 16595 Cost: $2907
-
+    
     ---Proposed Time-of-Day With Demand Charge D1.12 Plan (U-20836)---
     Demand Hour 1: 10/02/2021 8:00 PM 7.231 kWh
     Demand Hour 2: 06/09/2021 3:00 PM 7.227 kWh
     Demand Hour 3: 06/10/2021 2:00 PM 6.621 kWh
     Service Level (demand): 7
-
+    
     Delivery Charge (demand): $903
     Capacity Energy Charge (demand): $491
-
+    
     Non-Capacity Energy Charges (usage):
     Summer Peak     kWh: 1027 Cost: $66
     Summer Off-Peak kWh: 5332 Cost: $252
     Winter Peak     kWh: 1268 Cost: $65
     Winter Off-Peak kWh: 8966 Cost: $424
         Subtotal Non-Capacity Energy kWh: 16595 Cost: $807
+    
     Total D1.12 Cost: $2201
+    
+    ---Comparison Summary---
+    D1               Cost: $2736
+    D1.2             Cost: $2400
+    D1.11 (Proposed) Cost: $2907
+    D1.12 (Proposed) Cost: $2201

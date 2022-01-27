@@ -680,7 +680,14 @@ print "Summer Off-Peak kWh: $d1_12_summer_offpeak_kwh Cost: \$$d1_12_summer_offp
 print "Winter Peak     kWh: $d1_12_winter_peak_kwh Cost: \$$d1_12_winter_peak_dollars\n";
 print "Winter Off-Peak kWh: $d1_12_winter_offpeak_kwh Cost: \$$d1_12_winter_offpeak_dollars\n";
 print "    Subtotal Non-Capacity Energy kWh: $d1_12_total_kwh Cost: \$$d1_12_total_noncap_energy_dollars\n\n";
-print "Total D1.12 Cost: \$$d1_12_grand_total_dollars\n\n";
+print "Total D1.12 Cost: \$$d1_12_grand_total_dollars\n";
 
+print "\n";
+print "---Comparison Summary---\n";
+print "D1               Cost: \$$std_total_dollars\n";
+print "D1.2             Cost: \$$total_tod_dollars\n";
+print "D1.11 (Proposed) Cost: \$$d1_11_total_dollars\n";
+print "D1.12 (Proposed) Cost: \$$d1_12_grand_total_dollars\n";
 
+print "\n";
 
