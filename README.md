@@ -19,7 +19,7 @@ A quick and somewhat dirty script to examine a year's worth of your DTE Energy e
 
 # Known Bugs/Limitations/Caveats
 * The 17 kWh/day tiering logic for the D1 standard plan is only computed to an hourly basis here. On actual DTE bills, the 17 kWh threshold is exact.
-* For the D1.12 plan, each month's demand-based charges are computed based on the past 12 billing months on a rolling basis. Since we only have one year's worth of data to work with, this script computes your demand level for the entire service year and uses that level for each billing month.
+* For the D1.12 plan, DTE computes each month's demand-based charges based on the past 12 billing months' usage on a rolling basis. Since we only have one year's worth of data to work with, this script computes your demand level for the entire service year and uses that level for each billing month.
 * For the D1.12 plan, if your demand level is greater than 9 kW, DTE computes the additional demand-based charges with a granularity of 0.1 kW. This script does not use 0.1 kW thresholds; instead, it uses all available precision. 
 * This script does not currently work on DTE accounts associated with more than one electric meter. If your DTE account is associated with more than one electric meter, you will need to edit the CSV usage file to remove all rows pertaining to all meters other than the one you want to analyze. You will also need to remove the entire "meter number" column from the CSV usage file.
 
