@@ -115,6 +115,7 @@ A quick and somewhat dirty script to examine a year's worth of your DTE Energy e
 * D1 standard residential service
 * D1.2 time-of-day residential service
 * D1.11 proposed time-of-day residential service (U-20836)
+* D1.12 proposed time-of-day residential service (U-20836)
 
 EOF
 }
