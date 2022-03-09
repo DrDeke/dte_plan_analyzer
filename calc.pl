@@ -8,6 +8,7 @@ my $general_debug0 = 0;
 my $d1debug = 0;
 my $d1_2debug = 0;
 my $d1_8debug = 0;
+my $d1_9debug = 0;
 my $d1_11debug = 0;
 my $d1_12debug = 0;
 
@@ -26,6 +27,16 @@ my $summer_offpeak_rate = 12.032;
 
 my $standard_rate_tier1 = 15.287;
 my $standard_rate_tier2 = 17.271;
+
+# Constants for D1.9 rates
+my $d1_9_weekday_peak_rate = 23.212;
+my $d1_9_weekday_mid_peak_rate = 15.832;
+my $d1_9_off_peak_rate = 11.405;
+
+my $d1_9_weekday_peak_first_hr = 15;  # Peak starts 3pm
+my $d1_9_weekday_peak_last_hr = 18;  # ends 7pm (so 6-7 is the last hour)
+my $d1_9_off_peak_first_hr = 23;  # Off-peak rate starts 11pm
+my $d1_9_off_peak_last_hr = 6;  # and ends at 7am (so 6-7 is the last hour)
 
 # Constants for Proposed D1.11 rates
 my $d1_11_weekday_peak_first_hr = 15;
@@ -82,6 +93,11 @@ my $d1_12_summer_offpeak_kwh = 0;
 my $d1_12_summer_peak_kwh = 0;
 
 
+my $d1_9_peak_kwh = 0;
+my $d1_9_mid_kwh = 0;
+my $d1_9_off_kwh = 0;
+
+
 my $d1_12_demandhr1_kwh = 0;
 my $d1_12_demandhr2_kwh = 0;
 my $d1_12_demandhr3_kwh = 0;
@@ -114,6 +130,7 @@ A quick and somewhat dirty script to examine a year's worth of your DTE Energy e
 
 * D1 standard residential service
 * D1.2 time-of-day residential service
+* D1.9 "dynamic power pricing"
 * D1.11 proposed time-of-day residential service (U-20836)
 * D1.12 proposed time-of-day residential service (U-20836)
 
@@ -434,6 +451,48 @@ while (my $line = <$data>)
                 }
 	}
 
+	# Accumulate D1.9 usage
+	if (($dayofweek == 6) || ($dayofweek == 7)) #It's a weekend, so off-peak
+	{
+		if ($d1_9debug)
+		{
+			print "Adding $usage kWh to off-peak (weekend)\n";
+		}
+		$d1_9_off_kwh = $d1_9_off_kwh + $usage;
+	}
+	else
+	{
+		if (($hour <= $d1_9_off_peak_last_hr) || ($hour >= $d1_9_off_peak_first_hr))
+		{
+			if ($d1_9debug)
+			{
+				print "Adding $usage kWh to off-peak (weekday, $hour)\n";
+			}
+			$d1_9_off_kwh = $d1_9_off_kwh + $usage;
+		}
+		else  # We're not off peak
+		{
+			if (($hour >= $d1_9_weekday_peak_first_hr) && ($hour <= $d1_9_weekday_peak_last_hr))
+			{
+				# We're in the peak
+				if ($d1_9debug)
+				{
+					print "Adding $usage kWh to peak (weekday, $hour)\n";
+				}
+				$d1_9_peak_kwh = $d1_9_peak_kwh + $usage;
+			}
+			else
+			{
+				# mid-peak, I guess
+				if ($d1_9debug)
+				{
+					print "Adding $usage kWh to mid-peak (weekday, $hour)\n";
+				}
+				$d1_9_mid_kwh = $d1_9_mid_kwh + $usage;
+			}
+		}
+	}
+
 	#Accumulate D1.11 (proposed) usage
 	if (($month < $d1_11_summer_first_mo) || ($month > $d1_11_summer_last_mo)) #It's winter
 	{
@@ -605,6 +664,15 @@ $summer_offpeak_kwh = int($summer_offpeak_kwh);
 $winter_peak_kwh = int($winter_peak_kwh);
 $winter_offpeak_kwh = int($winter_offpeak_kwh);
 
+my $d1_9_peak_dollars = int(($d1_9_peak_kwh * $d1_9_weekday_peak_rate) / 100);
+my $d1_9_mid_dollars = int(($d1_9_mid_kwh * $d1_9_weekday_mid_peak_rate) / 100);
+my $d1_9_off_dollars = int(($d1_9_off_kwh * $d1_9_off_peak_rate) / 100);
+my $total_d19_kwh = int($d1_9_peak_kwh + $d1_9_mid_kwh + $d1_9_off_kwh);
+my $total_d19_dollars = int($d1_9_peak_dollars + $d1_9_mid_dollars + $d1_9_off_dollars);
+$d1_9_peak_kwh = int($d1_9_peak_kwh);
+$d1_9_mid_kwh = int($d1_9_mid_kwh);
+$d1_9_off_kwh = int($d1_9_off_kwh);
+
 my $d1_11_summer_peak_dollars = int((($d1_11_summer_peak_kwh * $d1_11_summer_peak_noncap_rate) + ($d1_11_summer_peak_kwh * $d1_11_energy_cap_rate) + ($d1_11_summer_peak_kwh * $d1_11_distrib_rate)) / 100);
 my $d1_11_summer_offpeak_dollars = int((($d1_11_summer_offpeak_kwh * $d1_11_summer_offpeak_noncap_rate) + ($d1_11_summer_offpeak_kwh * $d1_11_energy_cap_rate) + ($d1_11_summer_offpeak_kwh * $d1_11_distrib_rate)) / 100);
 my $d1_11_winter_peak_dollars = int((($d1_11_winter_peak_kwh * $d1_11_winter_peak_noncap_rate) + ($d1_11_winter_peak_kwh * $d1_11_energy_cap_rate) + ($d1_11_winter_peak_kwh * $d1_11_distrib_rate)) / 100);
@@ -658,6 +726,13 @@ print "Winter Off-Peak kWh: $winter_offpeak_kwh Cost: \$$winter_offpeak_dollars\
 print "Total           kWh: $total_tod_kwh Cost: \$$total_tod_dollars\n";
 
 print "\n";
+print "---DPP D1.9 Plan---\n";
+print "Weekday Peak     kWh: $d1_9_peak_kwh Cost: \$$d1_9_peak_dollars\n";
+print "Weekday Mid-Peak kWh: $d1_9_mid_kwh Cost: \$$d1_9_mid_dollars\n";
+print "Off Peak         kWh: $d1_9_off_kwh Cost: \$$d1_9_off_dollars\n";
+print "Total            kWh: $total_d19_kwh Cost: \$$total_d19_dollars\n";
+
+print "\n";
 print "---Proposed Time-of-Day D1.11 Plan (U-20836)---\n";
 print "Summer Peak     kWh: $d1_11_summer_peak_kwh Cost: \$$d1_11_summer_peak_dollars\n";
 print "Summer Off-Peak kWh: $d1_11_summer_offpeak_kwh Cost: \$$d1_11_summer_offpeak_dollars\n";
@@ -687,6 +762,7 @@ print "\n";
 print "---Comparison Summary---\n";
 print "D1               Cost: \$$std_total_dollars\n";
 print "D1.2             Cost: \$$total_tod_dollars\n";
+print "D1.9 (w/o surge) Cost: \$$total_d19_dollars\n";
 print "D1.11 (Proposed) Cost: \$$d1_11_total_dollars\n";
 print "D1.12 (Proposed) Cost: \$$d1_12_grand_total_dollars\n";
 
