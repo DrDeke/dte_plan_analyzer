@@ -138,20 +138,20 @@ open (my $data, '<', $file) or die "Could not open input file $file.\n";
 # (which have some complications, so look them up if needed)
 # (at https://mi-psc.force.com/sfc/servlet.shepherd/version/download/0688y000001oeWBAAY )
 
-my $d1_12_demand_rows = `cat $file | sort -g -r --field-separator=',' -k 4,4 |awk -F',' '{ if(!a[\$2]++){print} }' | head -3`;
+my $d1_12_demand_rows = `cat $file | sed 's/"//g' | sort -g -r --field-separator=',' -k 5,5 |awk -F',' '{ if(!a[\$3]++){print} }' | head -3`;
 my @d1_12_fields = split ",", $d1_12_demand_rows;
 
-$d1_12_demandhr1_kwh = $d1_12_fields[3];
-$d1_12_demandhr2_kwh = $d1_12_fields[8];
-$d1_12_demandhr3_kwh = $d1_12_fields[13];
+$d1_12_demandhr1_kwh = $d1_12_fields[4];
+$d1_12_demandhr2_kwh = $d1_12_fields[10];
+$d1_12_demandhr3_kwh = $d1_12_fields[16];
 
-$d1_12_demandhr1_date = $d1_12_fields[1];
-$d1_12_demandhr2_date = $d1_12_fields[6];
-$d1_12_demandhr3_date = $d1_12_fields[11];
+$d1_12_demandhr1_date = $d1_12_fields[2];
+$d1_12_demandhr2_date = $d1_12_fields[8];
+$d1_12_demandhr3_date = $d1_12_fields[14];
 
-$d1_12_demandhr1_hour = $d1_12_fields[2];
-$d1_12_demandhr2_hour = $d1_12_fields[7];
-$d1_12_demandhr3_hour = $d1_12_fields[12];
+$d1_12_demandhr1_hour = $d1_12_fields[3];
+$d1_12_demandhr2_hour = $d1_12_fields[9];
+$d1_12_demandhr3_hour = $d1_12_fields[15];
 
 $d1_12_demand_kw = ($d1_12_demandhr1_kwh + $d1_12_demandhr2_kwh + $d1_12_demandhr3_kwh) / 3;
 $d1_12_demand_level = int($d1_12_demand_kw);
@@ -248,6 +248,8 @@ if ($d1_12debug == 1)
 # Read and parse hourly usage data from the input file
 while (my $line = <$data>)
 {
+	$line =~ s/\"//g;
+
 	if ($general_debug0 == 1)
 	{
 		print "$line\n";
@@ -255,9 +257,9 @@ while (my $line = <$data>)
 	next if $. == 1; # skip first line
 
 	my @fields = split "," , $line;
-	$date = $fields[1];
-	$time = $fields[2];
-	$usage = $fields[3];
+	$date = $fields[2];
+	$time = $fields[3];
+	$usage = $fields[4];
 
 	$date =~ s/\"//g;
 	$time =~ s/\"//g;
