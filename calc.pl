@@ -129,10 +129,20 @@ if(@ARGV != 1) {
 	exit 1;
 }
 
+# Check whether multiple meter numbers are present in the input
+# and abort if there are.
+
+my $num_meters = `cat $file | grep -v 'Meter Number' | sed 's/"//g' | awk -F',' '{ print \$2  }' | sort -n | uniq | wc -l`;
+chomp($num_meters);
+
+if ($num_meters > 1)
+{
+	print "ERROR: Multiple electric meters ($num_meters meters) found in input file. This script only works with input files containing data from a single electric meter. Exiting.\n";
+	exit 1;
+}
+
+
 open (my $data, '<', $file) or die "Could not open input file $file.\n";
-
-
-
 
 # Get top three usage hours per proposed D1.12 rules
 # (which have some complications, so look them up if needed)
