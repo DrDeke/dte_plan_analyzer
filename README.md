@@ -48,3 +48,8 @@ A quick and somewhat dirty script to examine a year's worth of your DTE Energy e
     Winter Off-Peak kWh: 10433 Cost: $1612
     Total           kWh: 20178 Cost: $3208
 
+    ---Comparison Summary---
+    D1    (U-20836)  Cost: $3336
+    D1.2  (U-20836)  Cost: $2889
+    D1.11 (U-20836)  Cost: $3208
+
