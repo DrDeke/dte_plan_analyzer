@@ -29,21 +29,21 @@ A quick and somewhat dirty script to examine a year's worth of your DTE Energy e
     
     
     ---Residential D1 Rate (U-20836)---
-Tier 1 kWh: 6588 Cost: $1003
-Tier 2 kWh: 13590 Cost: $2333
-Total  kWh: 20178 Cost: $3336
-
----Residential D1.2 Enhanced Time-of-Use Rate (U-20836)---
-Summer Peak     kWh: 2881 Cost: $634
-Summer Off-Peak kWh: 7030 Cost: $841
-Winter Peak     kWh: 2606 Cost: $512
-Winter Off-Peak kWh: 7660 Cost: $902
-Total           kWh: 20178 Cost: $2889
-
----Residential D1.11 Standard Time-of-Use Rate (U-20836)---
-Summer Peak     kWh: 1291 Cost: $271
-Summer Off-Peak kWh: 6929 Cost: $1070
-Winter Peak     kWh: 1523 Cost: $255
-Winter Off-Peak kWh: 10433 Cost: $1612
-Total           kWh: 20178 Cost: $3208
+    Tier 1 kWh: 6588 Cost: $1003
+    Tier 2 kWh: 13590 Cost: $2333
+    Total  kWh: 20178 Cost: $3336
+    
+    ---Residential D1.2 Enhanced Time-of-Use Rate (U-20836)---
+    Summer Peak     kWh: 2881 Cost: $634
+    Summer Off-Peak kWh: 7030 Cost: $841
+    Winter Peak     kWh: 2606 Cost: $512
+    Winter Off-Peak kWh: 7660 Cost: $902
+    Total           kWh: 20178 Cost: $2889
+    
+    ---Residential D1.11 Standard Time-of-Use Rate (U-20836)---
+    Summer Peak     kWh: 1291 Cost: $271
+    Summer Off-Peak kWh: 6929 Cost: $1070
+    Winter Peak     kWh: 1523 Cost: $255
+    Winter Off-Peak kWh: 10433 Cost: $1612
+    Total           kWh: 20178 Cost: $3208
 
