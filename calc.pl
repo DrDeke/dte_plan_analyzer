@@ -20,7 +20,7 @@ my $d1_11debug = 0;
 my $d1_rate_tier1 = 15.229;
 my $d1_rate_tier2 = 17.171;
 
-# Constatns for D1.2 Enhanced TOU (U-20836) rates
+# Constants for D1.2 Enhanced TOU (U-20836) rates
 my $d1_2_weekday_peak_first_hr = 11;
 my $d1_2_weekday_peak_last_hr = 18; #The 6pm-o'clock hour. Off-peak starts at 7pm-o'clock
 my $d1_2_summer_first_mo = 6;
