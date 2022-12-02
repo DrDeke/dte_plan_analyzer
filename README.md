@@ -23,8 +23,8 @@ A quick and somewhat dirty script to examine a year's worth of your DTE Energy e
 
 # Example
     ./calc.pl input.csv
-    NOTICE: No (or invalid) data recorded for this hour: 2021-08-11 22
-    NOTICE: No (or invalid) data recorded for this hour: 2021-08-11 23
+    NOTICE: No (or invalid) data recorded for this hour: 2022-08-11 22
+    NOTICE: No (or invalid) data recorded for this hour: 2022-08-11 23
     Note: It is normal to have "no (or invalid) data" for hours during which the power to your meter was out.
     
     
