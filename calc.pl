@@ -441,5 +441,11 @@ print "Winter Peak     kWh: $d1_11_winter_peak_kwh Cost: \$$d1_11_winter_peak_do
 print "Winter Off-Peak kWh: $d1_11_winter_offpeak_kwh Cost: \$$d1_11_winter_offpeak_dollars\n";
 print "Total           kWh: $d1_11_total_kwh Cost: \$$d1_11_total_dollars\n";
 
-print "\n";
+print "\n\n";
 
+print "---Comparison Summary---\n";
+print "D1    (U-20836)  Cost: \$$d1_total_dollars\n";
+print "D1.2  (U-20836)  Cost: \$$d1_2_total_dollars\n";
+print "D1.11 (U-20836)  Cost: \$$d1_11_total_dollars\n";
+
+print "\n";
