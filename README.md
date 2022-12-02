@@ -23,7 +23,7 @@ A quick and somewhat dirty script to examine a year's worth of your DTE Energy e
 * This script does not currently work on DTE accounts associated with more than one electric meter. If your DTE account is associated with more than one electric meter, you will need to edit the CSV usage file to remove all rows pertaining to all meters other than the one you want to analyze. You will also need to remove the entire "meter number" column from the CSV usage file.
 
 # Example
-    ./calc.pl input.csv
+    $ ./calc.pl input.csv
     NOTICE: No (or invalid) data recorded for this hour: 2022-08-11 22
     NOTICE: No (or invalid) data recorded for this hour: 2022-08-11 23
     Note: It is normal to have "no (or invalid) data" for hours during which the power to your meter was out.
