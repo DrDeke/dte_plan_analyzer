@@ -31,6 +31,36 @@ Rates:
 * Winter On-Peak:  19.666 cents/kWh
 * Winter Off-Peak: 11.776 cents/kWh
 
+## D1.8 Dynamic Peak Pricing Residential Electric Service Rate
+
+Note: This rate plan is not currently supported by this script. I would like to add it in the future.
+
+### Hours
+
+* On-Peak: Weekdays 3:00 pm - 7:00 pm, excluding holidays
+* Mid-Peak: Weekdays 7:00 am - 3:00 pm, excluding holidays
+* Off-Peak: Weekdays 11:00 pm - 7:00 am, 24 hours on weekends and holidays
+* Critical-Peak: Critical hours which, when announced by the company, will replace the on-peak time period from 3:00 pm - 7:00 pm
+
+Tariff language regarding critical peak hours: 
+
+```
+The Company expects to implement Critical Peak pricing for no more than 56 hours per year, for evaluation of
+the tariff based on several factors including but not limited to economics, system demand or capacity deficiency.
+
+Customers will be notified up to 24 hours before, but no less than 6 hours before critical hours are expected to
+occur. Notification will be made by one or more of the following methods: automated telephone message, text
+message, e-mail, or presentment on an in-premise display unit furnished by the Company. Receipt of such
+notice is the responsibility of the participating customer. 
+```
+
+### Rate Summary
+
+* Critical-Peak: 101.789 cents/kWh
+* On-Peak: 22.94 cents/kWh
+* Mid-Peak: 15.768 cents/kWh
+* Off-Peak: 11.466 cents/kWh
+
 ## D1.11 Standard Time-of-Use Residential Electric Service Rate
 
 ### Special Note
