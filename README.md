@@ -16,7 +16,8 @@ A quick and somewhat dirty script to examine a year's worth of your DTE Energy e
 * The rate elements considered by this script are the per-kWh component of: capacity energy charges, non-capacity energy charges, delivery charges
 * Fixed monthly service charges are not accounted for by this script.
 * Taxes, fees, surcharges, and credits not mentioned on the rate sheet are not accounted for by this script.
-* Dollar and kWh amounts are truncated to integers near the end of the script (after all the accumulation has occurred).
+* Dollar amounts are truncated to two decimal places near the end of the script (after all the accumulation has occurred).
+* kWh amounts are truncated to integers near the end of the script (after all the accumulation has occurred).
 
 # Known Bugs/Limitations/Caveats
 * The 17 kWh/day tiering logic for the D1 standard plan is only computed to an hourly basis here. On actual DTE bills, the 17 kWh threshold is exact.

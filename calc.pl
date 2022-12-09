@@ -387,30 +387,45 @@ if ($missing_data == 1)
 
 
 my $d1_total_kwh = int($d1_tier1_kwh + $d1_tier2_kwh);
-my $d1_tier1_dollars = int(($d1_tier1_kwh * $d1_rate_tier1) / 100);
-my $d1_tier2_dollars = int(($d1_tier2_kwh * $d1_rate_tier2) / 100);
-my $d1_total_dollars = int($d1_tier1_dollars + $d1_tier2_dollars);
+my $d1_tier1_dollars = ($d1_tier1_kwh * $d1_rate_tier1) / 100;
+$d1_tier1_dollars = sprintf("%.2f", $d1_tier1_dollars);
+my $d1_tier2_dollars = ($d1_tier2_kwh * $d1_rate_tier2) / 100;
+$d1_tier2_dollars = sprintf("%.2f", $d1_tier2_dollars);
+my $d1_total_dollars = $d1_tier1_dollars + $d1_tier2_dollars;
+$d1_total_dollars = sprintf("%.2f", $d1_total_dollars);
 $d1_tier1_kwh = int($d1_tier1_kwh);
 $d1_tier2_kwh = int($d1_tier2_kwh);
 
 
 
-my $d1_2_summer_peak_dollars = int(($d1_2_summer_peak_kwh * $d1_2_summer_peak_rate) / 100);
-my $d1_2_winter_peak_dollars = int(($d1_2_winter_peak_kwh * $d1_2_winter_peak_rate) / 100);
-my $d1_2_summer_offpeak_dollars = int(($d1_2_summer_offpeak_kwh * $d1_2_summer_offpeak_rate) / 100);
-my $d1_2_winter_offpeak_dollars = int(($d1_2_winter_offpeak_kwh * $d1_2_winter_offpeak_rate) / 100);
+my $d1_2_summer_peak_dollars = ($d1_2_summer_peak_kwh * $d1_2_summer_peak_rate) / 100;
+$d1_2_summer_peak_dollars = sprintf("%.2f", $d1_2_summer_peak_dollars);
+my $d1_2_winter_peak_dollars = ($d1_2_winter_peak_kwh * $d1_2_winter_peak_rate) / 100;
+$d1_2_winter_peak_dollars = sprintf("%.2f", $d1_2_winter_peak_dollars);
+my $d1_2_summer_offpeak_dollars = ($d1_2_summer_offpeak_kwh * $d1_2_summer_offpeak_rate) / 100;
+$d1_2_summer_offpeak_dollars = sprintf("%.2f", $d1_2_summer_offpeak_dollars);
+my $d1_2_winter_offpeak_dollars = ($d1_2_winter_offpeak_kwh * $d1_2_winter_offpeak_rate) / 100;
+$d1_2_winter_offpeak_dollars = sprintf("%.2f", $d1_2_winter_offpeak_dollars);
 my $d1_2_total_kwh = int($d1_2_summer_peak_kwh + $d1_2_summer_offpeak_kwh + $d1_2_winter_peak_kwh + $d1_2_winter_offpeak_kwh);
-my $d1_2_total_dollars = int($d1_2_summer_peak_dollars + $d1_2_summer_offpeak_dollars + $d1_2_winter_peak_dollars + $d1_2_winter_offpeak_dollars);
+my $d1_2_total_dollars = $d1_2_summer_peak_dollars + $d1_2_summer_offpeak_dollars + $d1_2_winter_peak_dollars + $d1_2_winter_offpeak_dollars;
+$d1_2_total_dollars = sprintf("%.2f", $d1_2_total_dollars);
+
 $d1_2_summer_peak_kwh = int($d1_2_summer_peak_kwh);
 $d1_2_summer_offpeak_kwh = int($d1_2_summer_offpeak_kwh);
 $d1_2_winter_peak_kwh = int($d1_2_winter_peak_kwh);
 $d1_2_winter_offpeak_kwh = int($d1_2_winter_offpeak_kwh);
 
-my $d1_11_summer_peak_dollars = int(($d1_11_summer_peak_kwh * $d1_11_summer_peak_rate) / 100);
-my $d1_11_summer_offpeak_dollars = int((($d1_11_summer_offpeak_kwh * $d1_11_summer_offpeak_rate)) / 100);
-my $d1_11_winter_peak_dollars = int(($d1_11_winter_peak_kwh * $d1_11_winter_peak_rate) / 100);
-my $d1_11_winter_offpeak_dollars = int(($d1_11_winter_offpeak_kwh * $d1_11_winter_offpeak_rate) / 100);
+my $d1_11_summer_peak_dollars = ($d1_11_summer_peak_kwh * $d1_11_summer_peak_rate) / 100;
+$d1_11_summer_peak_dollars = sprintf("%.2f", $d1_11_summer_peak_dollars);
+my $d1_11_summer_offpeak_dollars = (($d1_11_summer_offpeak_kwh * $d1_11_summer_offpeak_rate)) / 100;
+$d1_11_summer_offpeak_dollars = sprintf("%.2f", $d1_11_summer_offpeak_dollars);
+my $d1_11_winter_peak_dollars = ($d1_11_winter_peak_kwh * $d1_11_winter_peak_rate) / 100;
+$d1_11_winter_peak_dollars = sprintf("%.2f", $d1_11_winter_peak_dollars);
+my $d1_11_winter_offpeak_dollars = ($d1_11_winter_offpeak_kwh * $d1_11_winter_offpeak_rate) / 100;
+$d1_11_winter_offpeak_dollars = sprintf("%.2f", $d1_11_winter_offpeak_dollars);
+
 my $d1_11_total_dollars = $d1_11_summer_peak_dollars + $d1_11_summer_offpeak_dollars + $d1_11_winter_peak_dollars + $d1_11_winter_offpeak_dollars;
+$d1_11_total_dollars = sprintf("%.2f", $d1_11_total_dollars);
 my $d1_11_total_kwh = int($d1_11_summer_peak_kwh + $d1_11_summer_offpeak_kwh + $d1_11_winter_peak_kwh + $d1_11_winter_offpeak_kwh);
 $d1_11_winter_offpeak_kwh = int($d1_11_winter_offpeak_kwh);
 $d1_11_winter_peak_kwh = int($d1_11_winter_peak_kwh);
