@@ -63,6 +63,8 @@ notice is the responsibility of the participating customer.
 
 ## D1.9 Separately-Metered Electric Vehicle Rate
 
+Note: This rate plan is not currently supported by this script.
+
 ### Hours
 
 * On-Peak: Weekdays 9:00 am - 11:00 pm
