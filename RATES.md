@@ -61,6 +61,18 @@ notice is the responsibility of the participating customer.
 * Mid-Peak: 15.768 cents/kWh
 * Off-Peak: 11.466 cents/kWh
 
+## D1.9 Separately-Metered Electric Vehicle Rate
+
+### Hours
+
+* On-Peak: Weekdays 9:00 am - 11:00 pm
+* Off-Peak: All other times
+
+### Rate Summary
+
+* On-Peak: 23.915 cents/kWh
+* Off-Peak: 11.138 cents/kWh
+
 ## D1.11 Standard Time-of-Use Residential Electric Service Rate
 
 ### Special Note
