@@ -6,7 +6,7 @@ A quick and somewhat dirty script to examine a year's worth of your DTE Energy e
 
 
 # How to use 
-1. Download exactly one year's worth of your electric usage data from dteenergy.com in CSV format
+1. Download one year's worth of your electric usage data from dteenergy.com in CSV format (log in to your account, click "Energy Usage Data" on the left menu, and select a one-year period in the Date Range fields)
 2. Run the script with the CSV file as the argument
 3. The results will be printed to standard output
 
