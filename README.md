@@ -11,7 +11,7 @@ A quick and somewhat dirty script to examine a year's worth of your DTE Energy e
 3. The results will be printed to standard output
 
 # Rates and Assumptions
-* Rate information for the D1, D1.2, and D1.11 plans were obtained from the [final order in rate case U-20836](https://mi-psc.force.com/sfc/servlet.shepherd/version/download/0688y0000058iIbAAI) as accessed on December 1, 2022. The relevant section starts on page 510 of the PDF. 
+* Rate information for the D1, D1.2, and D1.11 plans was obtained from the [final order in rate case U-20836](https://mi-psc.force.com/sfc/servlet.shepherd/version/download/0688y0000058iIbAAI) as accessed on December 1, 2022. The relevant section starts on page 510 of the PDF. 
     * DTE will make the new D1.11 rate available for service no later than May 31, 2023. 
 * The rate elements considered by this script are the per-kWh component of: capacity energy charges, non-capacity energy charges, delivery charges
 * Fixed monthly service charges are not accounted for by this script.
