@@ -81,7 +81,7 @@ Note: This rate plan is not currently supported by this script.
 
 Per the MPSC order in rate case U-20836, DTE has until May 31, 2023 to start offering the D1.11 plan to customers. 
 
-Additionally, there is probably going to be a campaign to get residential customers who are on the D1 plan to switch to D1.11. From the sound of it, DTE will probably start promoting the new D1.11 plan on bills / bill inserts / etc, and may even set a deadline after which they will automatically move customers from D1 to D1.11 unless the customer opts out.
+Additionally, DTE is going to move all existing D1 customers (except those who opt out of radio-read metering at additional expense) to the new D1.11 plan sometime in early to mid 2023. 
 
 ### Seasons and Hours
 
