@@ -1,3 +1,60 @@
+# U-21297 Rate Summary
+This is a summary of DTE's residential electric rates under [rate case U-21297](https://mi-psc.my.site.com/sfc/servlet.shepherd/version/download/0688y00000At0VBAAZ), which went into effect on December 15, 2023.
+
+## D1 Residential Service Rate - Non-Transmitting Meter
+
+This rate plan incurs a one-time $40.69 setup charge and a monthly recurring charge of $9.82 (in addition to the normal monthly service charge).
+
+### Rate Summary
+
+For the first 17 kWh/day:
+* 17.074 cents/kWh
+
+For excess over 17 kWh/day:
+* 17.572 cents/kWh
+
+## D1.2 Residential Service Rate - Enhanced Time-of-Use
+
+### Seasons and Hours
+
+Seasons:
+* Summer Months: June - October
+* Winter Months: November - May
+
+Hours:
+* On-Peak Hours: Weekdays 11:00 am - 7:00 pm
+* Off-Peak Hours: All other times
+
+### Rate Summary
+
+Rates:
+* Summer On-Peak: 23.776 cents/kWh
+* Summer Off-Peak: 13.402 cents/kWh
+* Winter On-Peak: 21.347 cents/kWh
+* Winter Off-Peak: 13.196 cents/kWh
+
+## D1.11 Standard Time-of-Use Residential Electric Service Rate
+
+### Seasons and Hours
+
+Seasons:
+* Summer Months: June - September
+* Winter Months: October - May
+
+Hours:
+* On-Peak Hours: Weekdays 3:00 pm - 7:00 pm
+* Off-Peak Hours: All other times
+
+### Rate Summary
+
+Rates:
+* Summer On-Peak: 22.398 cents/kWh
+* Summer Off-Peak: 16.732 cents/kWh
+* Winter On-Peak: 18.093  cents/kWh
+* Winter Off-Peak: 16.732 cents/kWh
+
+
+
 # U-20836 Rate Summary
 This is a summary of DTE's residential electric rates under [rate case U-20836](https://mi-psc.force.com/sfc/servlet.shepherd/version/download/0688y0000058iIbAAI), which went into effect on November 25, 2022. 
 
@@ -106,106 +163,3 @@ Rates:
 &nbsp;  
 &nbsp;  
 &nbsp;  
-
-# U-21297 Proposed Rates
-The following rate structures are being proposed by DTE in their 2023 [rate case U-21297](https://mi-psc.force.com/s/case/5008y000004zxa1AAA/in-the-matter-of-the-application-of-dte-electric-company-for-authority-to-increase-its-rates-amend-its-rate-schedules-and-rules-governing-the-distribution-and-supply-of-electric-energy-and-for-miscellaneous-accounting-authority).
-
-## U-21297 Proposed D1.2 Enhanced Time-of-Use Residential Electric Service Rate
-
-Note: This rate plan is not currently supported by this script.
-
-### Seasons and Hours
-
-Seasons:
-* Summer Months: June - October
-* Winter Months: November - May
-
-Hours:
-* On-Peak Hours: Weekdays 11:00 am - 7:00 pm
-* Off-Peak Hours: All other times
-
-### Rate Summary
-
-Rates:
-* Summer On-Peak:  25.225 cents/kWh
-* Summer Off-Peak: 14.399 cents/kWh
-* Winter On-Peak:  22.69 cents/kWh
-* Winter Off-Peak: 14.185 cents/kWh
-
-## U-21297 Proposed D1.8 Dynamic Peak Pricing Residential Electric Service Rate
-
-Note: This rate plan is not currently supported by this script.
-
-### Hours
-
-* On-Peak: Weekdays 3:00 pm - 7:00 pm, excluding holidays
-* Mid-Peak: Weekdays 7:00 am - 3:00 pm, excluding holidays
-* Off-Peak: Weekdays 11:00 pm - 7:00 am, 24 hours on weekends and holidays
-* Critical-Peak: Critical hours which, when announced by the company, will replace the on-peak time period from 3:00 pm - 7:00 pm
-
-### Rate Summary
-
-* Critical-Peak: 103.905 cents/kWh
-* On-Peak: 26.442 cents/kWh
-* Mid-Peak: 18.093 cents/kWh
-* Off-Peak: 13.646 cents/kWh
-
-## U-21297 Proposed D1.9 Separately-Metered Electric Vehicle Rate
-
-Note: This rate plan is not currently supported by this script.
-
-### Hours
-
-* On-Peak: Weekdays 9:00 am - 11:00 pm
-* Off-Peak: All other times
-
-### Rate Summary
-
-* On-Peak: 26.77 cents/kWh
-* Off-Peak: 13.37 cents/kWh
-
-## U-21297 Proposed D1.11 Standard Time-of-Use Residential Electric Service Rate
-
-Note: This rate plan is not currently supported by this script.
-
-### Seasons and Hours
-
-Seasons:
-* Summer Months: June - September
-* Winter Months: October - May
-
-Hours:
-* On-Peak Hours: Weekdays 3:00 pm - 7:00 pm
-* Off-Peak Hours: All other times
-
-### Rate Summary
-
-Rates:
-* Summer On-Peak:  23.8 cents/kWh
-* Summer Off-Peak: 17.883 cents/kWh
-* Winter On-Peak:  19.304 cents/kWh
-* Winter Off-Peak: 17.883 cents/kWh
-
-## U-21297 Proposed D1.13 Overnight Savers
-
-Note: This rate plan is not currently supported by this script.
-
-### Seasons and Hours
-
-Seasons:
-* Summer Months: June - September
-* Winter Months: October - May
-
-Hours:
-* On-peak: Weekdays 3:00 pm - 7:00 pm
-* Super Off-peak: All days 1:00 am - 7:00 am
-* Off-peak: All other times
-
-### Rate Summary
-
-* Summer On-peak: 34.28 cents/kWh
-* Summer Off-peak: 24.403 cents/kWh
-* Summer Super Off-peak: 11.559 cents/kWh
-* Winter On-peak: 18.308 cents/kWh
-* Winter Off-peak: 15.194 cents/kWh
-* Winter Super off-peak: 11.559 cents/kWh
