@@ -1,3 +1,46 @@
+# U-21534 Rate Summary
+This is a summary of DTE's residential electric rates under [rate case U-21534](https://mi-psc.my.site.com/s/case/5008y000009TVbKAAW/in-the-matter-of-the-application-of-dte-electric-company-for-authority-to-increase-its-rates-amend-its-rate-schedules-and-rules-governing-the-distribution-and-supply-of-electric-energy-and-for-miscellaneous-accounting-authority), which went into effect on February 6, 2025.
+
+## D1.2 Time of Day 11 a.m. - 7 p.m. Rate
+
+### Seasons and Hours
+
+Seasons:
+* Summer Months: June - October
+* Winter Months: November - May
+
+Hours:
+* On-Peak Hours: Weekdays 11:00 am - 7:00 pm
+* Off-Peak Hours: All other times
+
+### Rate Summary
+
+Rates:
+* Summer On-Peak: 24.797 cents/kWh (+4.29%)
+* Summer Off-Peak: 14.257 cents/kWh (+6.38%)
+* Winter On-Peak: 22.329 cents/kWh (+4.60%)
+* Winter Off-Peak: 14.047 cents/kWh (+6.05%)
+
+## D1.11 Time of Day 3 p.m. - 7 p.m. Standard Base Rate
+
+### Seasons and Hours
+
+Seasons:
+* Summer Months: June - September
+* Winter Months: October - May
+
+Hours:
+* On-Peak Hours: Weekdays 3:00 pm - 7:00 pm
+* Off-Peak Hours: All other times
+
+### Rate Summary
+
+Rates:
+* Summer On-Peak: 23.394 cents/kWh (+4.45%)
+* Summer Off-Peak: 17.635 cents/kWh (+5.40%)
+* Winter On-Peak: 19.124 cents/kWh (+5.70%)
+* Winter Off-Peak: 17.635 cents/kWh (+5.40%)
+
 # U-21297 Rate Summary
 This is a summary of DTE's residential electric rates under [rate case U-21297](https://mi-psc.my.site.com/sfc/servlet.shepherd/version/download/0688y00000At0VBAAZ), which went into effect on December 15, 2023.
 
@@ -49,7 +92,7 @@ Hours:
 
 Rates:
 * Summer On-Peak: 22.398 cents/kWh
-* Summer Off-Peak: 16.732 cents/kWh
+* Summer Off-Peak: 16.732 cents/kWh 
 * Winter On-Peak: 18.093  cents/kWh
 * Winter Off-Peak: 16.732 cents/kWh
 
