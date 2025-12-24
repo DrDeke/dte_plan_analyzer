@@ -1,6 +1,5 @@
 # dte_plan_analyzer
 A quick and somewhat dirty script to examine a year's worth of your DTE Energy electric usage and calculate what your cost would have been on various residential rate plans including:
-* D1 Standard Residential Service Rate
 * D1.2 Enhanced Time-of-Use Residential Service Rate
 * D1.11 Standard Time-of-Use Residential Service Rate
 
@@ -11,8 +10,7 @@ A quick and somewhat dirty script to examine a year's worth of your DTE Energy e
 3. The results will be printed to standard output
 
 # Rates and Assumptions
-* Rate information for the D1, D1.2, and D1.11 plans was obtained from the [final order in rate case U-20836](https://mi-psc.force.com/sfc/servlet.shepherd/version/download/0688y0000058iIbAAI) as accessed on December 1, 2022. The relevant section starts on page 510 of the PDF. 
-    * DTE will make the new D1.11 rate available for service no later than May 31, 2023. 
+* Rate information for the D1.2 and D1.11 plans was obtained from the [final order in rate case U-21534](https://mi-psc.my.site.com/s/case/5008y000009TVbKAAW/in-the-matter-of-the-application-of-dte-electric-company-for-authority-to-increase-its-rates-amend-its-rate-schedules-and-rules-governing-the-distribution-and-supply-of-electric-energy-and-for-miscellaneous-accounting-authority), which went into effect on February 6, 2025.  
 * The rate elements considered by this script are the per-kWh component of: capacity energy charges, non-capacity energy charges, delivery charges
 * Fixed monthly service charges are not accounted for by this script.
 * Taxes, fees, surcharges, and credits not mentioned on the rate sheet are not accounted for by this script.
